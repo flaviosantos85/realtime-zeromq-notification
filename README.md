@@ -1,6 +1,6 @@
 # realtime zeromq notification<br><br>
 
-Technologies:<br><br>
+Technologies:<br>
 
 Docker<br>
 Ratchet PHP <br>
