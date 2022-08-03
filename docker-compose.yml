@@ -1,0 +1,30 @@
+version : '3.7'
+
+services:
+
+    front:
+        build: 
+            context : .
+            dockerfile: Dockerfile
+        ports:
+            - 8080:80
+        networks:
+            - app
+        depends_on:
+            - websocket
+        environment:
+            SERVER_CONNECT_URI: tcp://websocket:5557
+    websocket:
+        image : naonak/docker-apache-php7:latest
+        
+        volumes:
+            - .:/var/www/html/
+        ports:
+            - 8082:5555
+        environment:
+            SERVER_LISTEN_URI: tcp://0.0.0.0:5557
+        networks:
+            - app
+networks:
+    app:
+        driver : bridge
